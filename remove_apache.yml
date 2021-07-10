@@ -7,11 +7,11 @@
   - name: update respository index
     apt:
       update_cache: yes
-  - name: installing apache server
+  - name: removing apache server
     apt:
       name: apache2
-      state: latest
-  - name: adding php support for apache
+      state: absent
+  - name: removing php support for apache
     apt:
       name: libapache2-mod-php
-      state: latest
+      state: absent
