@@ -69,3 +69,5 @@ Server system: ansible all -m apt -a "upgrade=dist" --become --ask-become-pass
 client system: sudo apt dist-upgrade -- it should be all application are upgraded
 
 
+6th Tutorial Working with Playbook
+ansible-playbook --ask-become-pass remove_apache.yml
