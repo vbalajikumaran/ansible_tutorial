@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: update respository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+  - name: installing apache server
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+  - name: adding php support for apache
+    apt:
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"

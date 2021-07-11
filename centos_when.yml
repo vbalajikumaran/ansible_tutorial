@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: update respository index
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+  - name: installing apache server
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS"
+  - name: adding php support for apache
+    dnf:
+      name: php
+      state: latest
+    when: ansible_distribution == "CentOS"
