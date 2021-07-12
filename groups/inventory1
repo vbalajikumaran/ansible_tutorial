@@ -1,0 +1,6 @@
+[db_server]
+subha@192.168.1.5
+[app_server]
+subha@192.168.1.6
+[file_server]
+subha@192.168.1.7

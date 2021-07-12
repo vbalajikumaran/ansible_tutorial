@@ -1,0 +1,52 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install updates on  CentOS
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+  - name: install updates on  ubuntu
+    apt:
+      upgrade: dist
+      update_cache: yes   
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: db_server
+- become: true
+  tasks:
+  - name: installing apache server
+    apt:
+      name: 
+        -  apache2
+        -  libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: app_server
+- become: true
+  tasks:
+  - name: install samba
+    apt:
+      name: samba
+      state: latest   
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: file_server
+- become: true
+  tasks:
+    - name:  install maria db ubuntu
+      apt:
+        name: mariadb-server
+        state: latest
+      when: ansible_distribution == "Ubuntu"
+
+    - name: install  maria db centos
+      dnf:
+        name: maria_db
+        state: latest
+      when: ansible_distribution == "CentOS"
+
