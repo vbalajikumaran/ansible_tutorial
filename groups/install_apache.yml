@@ -5,11 +5,13 @@
   tasks:
 
   - name: install updates on  CentOS
+    tags: always
     dnf:
       update_only: yes
       update_cache: yes
     when: ansible_distribution == "CentOS"
   - name: install updates on  ubuntu
+    tags: always
     apt:
       upgrade: dist
       update_cache: yes   
@@ -19,6 +21,7 @@
 - become: true
   tasks:
   - name: installing apache server
+    tags: apache,apache2
     apt:
       name: 
         -  apache2
@@ -30,6 +33,7 @@
 - become: true
   tasks:
   - name: install samba
+    tags: samba
     apt:
       name: samba
       state: latest   
@@ -39,12 +43,14 @@
 - become: true
   tasks:
     - name:  install maria db ubuntu
+      tags: db,ubuntu
       apt:
         name: mariadb-server
         state: latest
       when: ansible_distribution == "Ubuntu"
 
     - name: install  maria db centos
+      tags: centos,db
       dnf:
         name: maria_db
         state: latest
