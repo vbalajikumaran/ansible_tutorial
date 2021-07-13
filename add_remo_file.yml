@@ -1,0 +1,45 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+ 
+  - name: update respository index
+    apt:
+      update_cache: yes
+
+  - name: Creating single file 
+    tags: ubuntu
+    file:
+      path: /home/subha/file1.txt
+      state: touch
+
+  - name: Creating multiple file
+    tags: ubuntu
+    file:
+      path: "/home/subha/{{ item }}"
+      state: touch
+    loop:
+      - file2.txt
+      - file3.txt 
+   
+  - name: Deleting single file
+    tags: ubuntu
+    file:
+      path: /home/subha/file1.txt
+      state: absent
+
+  - name: deleting multiple file
+    tags: ubuntu
+    file:
+      path: "/home/subha/{{ item }}"
+      state: absent
+    loop:
+      - file3.txt
+      - file2.txt
+ 
+  
+  
+   
+   
+

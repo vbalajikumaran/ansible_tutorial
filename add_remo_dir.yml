@@ -1,0 +1,45 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+ 
+  - name: update respository index
+    apt:
+      update_cache: yes
+
+  - name: Creating single directory 
+    tags: ubuntu
+    file:
+      path: /home/subha/newfolder
+      state: directory
+
+  - name: Creating multiple directory
+    tags: ubuntu
+    file:
+      path: "/home/subha/{{ item }}"
+      state: directory
+    loop:
+      - newfolder1
+      - newfolder2 
+   
+  - name: Deleting single directory
+    tags: ubuntu
+    file:
+      path: /home/subha/newfolder
+      state: absent
+
+  - name: deleting multiple directory
+    tags: ubuntu
+    file:
+      path: "/home/subha/{{ item }}"
+      state: absent
+    loop:
+      - newfolder1
+      - newfolder2
+ 
+  
+  
+   
+   
+
