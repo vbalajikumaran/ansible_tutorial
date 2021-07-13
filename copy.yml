@@ -7,7 +7,7 @@
   - name: update respository index
     apt:
       update_cache: yes
-  - name: copy files from 
+  - name: copy single file 
     tags: ubuntu
     copy:
       src: ~/.ssh/ansible_tutorial/files/default_site1.html
@@ -15,3 +15,39 @@
       owner: root
       group: root
       mode: 0644
+    
+  - name: copying multiple files
+    tags: ubuntu
+    copy:
+      src: ~/.ssh/ansible_tutorial/files/{{ item }}
+      dest: /home/subha/files/{{ item }}
+      owner: root
+      group: root
+      mode: 0644
+    loop:
+      - testfile1.txt
+      - testfile2.txt
+
+  - name: copying directories
+    tags: ubuntu
+    copy:
+      src: ~/.ssh/ansible_tutorial/files/directory1/
+      dest: /home/subha
+      owner: root
+      group: root
+      mode: 0644
+
+  - name : witing contents in remote hosts
+    tags: ubuntu
+    copy:
+      dest: /home/subha/files/{{ item }}
+      content: "{{ ansible_host }}\n"
+      owner: root
+      group: root
+      mode: 0644
+    loop:
+      - testfile1.txt
+      - testfile2.txt
+
+   
+
