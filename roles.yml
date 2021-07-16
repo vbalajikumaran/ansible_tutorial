@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  roles:
+    - repo_index
+    - create_user
+    - install_app
+    - install_zip
+    - service
+  
+

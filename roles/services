@@ -1,0 +1,45 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: update respository index
+    apt:
+      update_cache: yes
+
+  - name: installing apache server
+    apt:
+      name: apache2
+      state: latest
+  
+  - name: checking apache service is available 
+    service:
+      name: apache2
+      enabled : yes
+
+  - name: stopped the service if already started
+    service:
+      name: apache2
+      state: stopped
+
+  - name: start the service 
+    service:
+      name: apache2
+      state: started
+
+  - name: restart the service
+    service:
+      name: apache2
+      state: restarted
+
+  - name: reloaded the service
+    service:
+      name: apache2
+      state: reloaded  
+
+   
+ 
+  - name: upgrade the system
+    apt: 
+      upgrade: dist      

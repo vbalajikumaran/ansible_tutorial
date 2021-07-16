@@ -1,4 +1,4 @@
----
+r---
 
 - hosts: all
   become: true
