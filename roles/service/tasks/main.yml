@@ -1,26 +1,22 @@
 - name: checking apache service is available 
   service:
-    name: apache2
+    name: "{{ apache_package_name }}"
     enabled : yes
 
 - name: stopped the service if already started
   service:
-    name: apache2
+    name: "{{ apache_package_name }}"
     state: stopped
 
 - name: start the service 
   service:
-    name: apache2
+    name: "{{ apache_package_name }}"
     state: started
-
-- name: restart the service
-  service:
-    name: apache2
-    state: restarted
+  notify: restart_apache_handlers
 
 - name: reloaded the service
   service:
-    name: apache2
+    name: "{{ apache_package_name }}"
     state: reloaded  
 
  

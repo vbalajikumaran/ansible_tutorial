@@ -1,10 +1,8 @@
 - name: installing apache server
   apt:
-    name: apache2
-    state: latest
-- name: adding php support for apache
-  apt:
-    name: libapache2-mod-php
+    name:
+      - "{{ apache_package_name }}"
+      - "{{ php_package_name }}"
     state: latest
 - name: install java
   apt:
