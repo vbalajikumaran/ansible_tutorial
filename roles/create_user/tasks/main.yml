@@ -6,7 +6,7 @@
 - name: add sshkey for ansible user
   authorized_key:
     user: ansible
-    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlqkQA0GvyeLagBWZqpip6TuOkIZ2bikAX+fQJ0P+Wi ANSIBLE KEY"
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfVHVYnRGp6jJSPdeW+u1HW2SItuwftSJk1DH22C2Qg AnsibleKey"
       
 - name: adding sudoers file for anisble user
   copy:
